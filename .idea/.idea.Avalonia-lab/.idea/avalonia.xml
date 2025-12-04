@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AvaloniaProject">
+    <option name="projectPerEditor">
+      <map>
+        <entry key="AvaloniaApplication1/AdminWindow.axaml" value="AvaloniaApplication1/AvaloniaApplication1.csproj" />
+        <entry key="AvaloniaApplication1/App.axaml" value="AvaloniaApplication1/AvaloniaApplication1.csproj" />
+        <entry key="AvaloniaApplication1/AuthWindow.axaml" value="AvaloniaApplication1/AvaloniaApplication1.csproj" />
+        <entry key="AvaloniaApplication1/MainWindow.axaml" value="AvaloniaApplication1/AvaloniaApplication1.csproj" />
+        <entry key="AvaloniaApplication1/UserControl1.axaml" value="AvaloniaApplication1/AvaloniaApplication1.csproj" />
+        <entry key="CafeApp/AdminWindow.axaml" value="CafeApp/CafeApp.csproj" />
+        <entry key="CafeApp/App.axaml" value="CafeApp/CafeApp.csproj" />
+        <entry key="CafeApp/AuthWindow.axaml" value="CafeApp/CafeApp.csproj" />
+      </map>
+    </option>
+  </component>
+</project>

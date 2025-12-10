@@ -11,6 +11,8 @@
         <entry key="CafeApp/AdminWindow.axaml" value="CafeApp/CafeApp.csproj" />
         <entry key="CafeApp/App.axaml" value="CafeApp/CafeApp.csproj" />
         <entry key="CafeApp/AuthWindow.axaml" value="CafeApp/CafeApp.csproj" />
+        <entry key="CafeApp/MainView.axaml" value="CafeApp/CafeApp.csproj" />
+        <entry key="CafeApp/MainWindow.axaml" value="CafeApp/CafeApp.csproj" />
       </map>
     </option>
   </component>

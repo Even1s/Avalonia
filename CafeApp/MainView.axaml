@@ -3,11 +3,17 @@
     Title="Авторизация"
     Width="350"
     mc:Ignorable="d"
-    x:Class="CafeApp.MainWindow"
+    x:Class="CafeApp.MainView"
+    x:DataType="vm:MainViewModel"
     xmlns="https://github.com/avaloniaui"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="clr-namespace:CafeApp.ViewModels"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Window.DataContext>
+        <vm:MainViewModel />
+    </Window.DataContext>
 
     <StackPanel Margin="10" Spacing="10">
 
@@ -18,19 +24,20 @@
         <TextBlock
             FontSize="20"
             Foreground="Red"
-            IsVisible="False"
             Name="ErrorTBlock"
-            Text="фывфывфывфы фывфывфывфы ывфывфывфывф ыв фывфывфывфы фвыфвфывф"
+            Text="{Binding Login}"
             TextWrapping="WrapWithOverflow"
             Width="330" />
 
         <TextBlock FontSize="20">Логин</TextBlock>
-        <TextBox FontSize="18" Name="LoginTBox" />
+        <TextBox
+            FontSize="18"
+            Name="LoginTBox"
+            Text="{Binding Login}" />
         <TextBlock FontSize="20">Пароль</TextBlock>
         <TextBox FontSize="18" Name="PasswordTBox" />
 
         <Button
-            Click="AuthFetch"
             FontSize="20"
             HorizontalAlignment="Center"
             Name="AuthBtn">

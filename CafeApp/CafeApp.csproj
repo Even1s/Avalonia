@@ -9,7 +9,17 @@
 
     <ItemGroup>
         <PackageReference Include="Avalonia" Version="11.3.9"/>
+        <PackageReference Include="Avalonia.Angle.Windows.Natives" Version="2.1.25547.20250602" />
+        <PackageReference Include="Avalonia.BuildServices" Version="11.3.2">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Avalonia.Controls.ColorPicker" Version="11.3.9" />
         <PackageReference Include="Avalonia.Desktop" Version="11.3.9"/>
+        <PackageReference Include="Avalonia.FreeDesktop" Version="11.3.9" />
+        <PackageReference Include="Avalonia.Native" Version="11.3.9" />
+        <PackageReference Include="Avalonia.Remote.Protocol" Version="11.3.9" />
+        <PackageReference Include="Avalonia.Skia" Version="11.3.9" />
         <PackageReference Include="Avalonia.Themes.Fluent" Version="11.3.9"/>
         <PackageReference Include="Avalonia.Fonts.Inter" Version="11.3.9"/>
         <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
@@ -17,9 +27,45 @@
             <IncludeAssets Condition="'$(Configuration)' != 'Debug'">None</IncludeAssets>
             <PrivateAssets Condition="'$(Configuration)' != 'Debug'">All</PrivateAssets>
         </PackageReference>
+        <PackageReference Include="Avalonia.Themes.Simple" Version="11.3.9" />
+        <PackageReference Include="Avalonia.Win32" Version="11.3.9" />
+        <PackageReference Include="Avalonia.X11" Version="11.3.9" />
+        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+        <PackageReference Include="HarfBuzzSharp" Version="8.3.1.1" />
+        <PackageReference Include="HarfBuzzSharp.NativeAssets.Linux" Version="8.3.1.1" />
+        <PackageReference Include="HarfBuzzSharp.NativeAssets.macOS" Version="8.3.1.1" />
+        <PackageReference Include="HarfBuzzSharp.NativeAssets.WebAssembly" Version="8.3.1.1" />
+        <PackageReference Include="HarfBuzzSharp.NativeAssets.Win32" Version="8.3.1.1" />
+        <PackageReference Include="MicroCom.Runtime" Version="0.11.0" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.11" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Abstractions" Version="9.0.11" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Analyzers" Version="9.0.11" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="9.0.1" />
+        <PackageReference Include="Microsoft.Extensions.Caching.Abstractions" Version="9.0.11" />
+        <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="9.0.11" />
+        <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="9.0.1" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.11" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.11" />
+        <PackageReference Include="Microsoft.Extensions.Logging" Version="9.0.11" />
+        <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.11" />
+        <PackageReference Include="Microsoft.Extensions.Options" Version="9.0.11" />
+        <PackageReference Include="Microsoft.Extensions.Primitives" Version="9.0.11" />
+        <PackageReference Include="Npgsql" Version="9.0.4" />
+        <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.4" />
+        <PackageReference Include="ReactiveUI.Avalonia" Version="11.3.8" />
+        <PackageReference Include="SkiaSharp" Version="3.116.1" />
+        <PackageReference Include="SkiaSharp.NativeAssets.Linux" Version="3.116.1" />
+        <PackageReference Include="SkiaSharp.NativeAssets.macOS" Version="3.116.1" />
+        <PackageReference Include="SkiaSharp.NativeAssets.WebAssembly" Version="2.88.9" />
+        <PackageReference Include="SkiaSharp.NativeAssets.Win32" Version="3.116.1" />
+        <PackageReference Include="System.IO.Pipelines" Version="8.0.0" />
+        <PackageReference Include="Tmds.DBus.Protocol" Version="0.21.2" />
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Windows\" />
+      <Folder Include="Helpers\" />
+      <Folder Include="Windows\Admin\" />
+      <Folder Include="Windows\Cook\" />
+      <Folder Include="Windows\Waiter\" />
     </ItemGroup>
 </Project>

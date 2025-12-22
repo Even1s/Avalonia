@@ -1,0 +1,14 @@
+<Window
+    SizeToContent="WidthAndHeight"
+    Title="Отчет о заказах"
+    x:Class="NikitApp.WaiterWindows.WaiterReportWindow"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <TextBlock
+        HorizontalAlignment="Left"
+        Margin="20"
+        Name="ReportTextBlock"
+        VerticalAlignment="Top" />
+
+</Window>

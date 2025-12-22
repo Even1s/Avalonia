@@ -1,0 +1,53 @@
+<Window
+    SizeToContent="WidthAndHeight"
+    Title="Назначение столика"
+    x:Class="NikitApp.AdminWindows.AddWaiterTableWindow"
+    x:DataType="vm:AddWaiterTableWindow"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:vm="clr-namespace:NikitApp.AdminWindows"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <StackPanel
+        Margin="10"
+        Orientation="Vertical"
+        Spacing="10">
+
+        <!--  Официант  -->
+        <TextBlock FontSize="20" Text="Официант" />
+        <ComboBox
+            DisplayMemberBinding="{Binding Login}"
+            FontSize="18"
+            ItemsSource="{Binding Waiters}"
+            Margin="0,0,0,10"
+            Name="WaiterComboBox"
+            Width="300" />
+
+        <!--  Столик  -->
+        <TextBlock FontSize="20" Text="Столик" />
+        <ComboBox
+            DisplayMemberBinding="{Binding Number}"
+            FontSize="18"
+            ItemsSource="{Binding Tables}"
+            Margin="0,0,0,10"
+            Name="TableComboBox"
+            Width="300" />
+
+        <!--  Кнопки управления  -->
+        <StackPanel Orientation="Horizontal" Spacing="25">
+            <Button
+                Click="SaveBtn_OnClick"
+                Content="Добавить"
+                HorizontalContentAlignment="Center"
+                Name="SaveBtn"
+                Width="140" />
+            <Button
+                Click="CancelBtn_OnClick"
+                Content="Отмена"
+                HorizontalContentAlignment="Center"
+                Name="CancelBtn"
+                Width="140" />
+        </StackPanel>
+
+    </StackPanel>
+
+</Window>

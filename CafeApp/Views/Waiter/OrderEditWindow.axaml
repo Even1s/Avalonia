@@ -48,6 +48,7 @@
             Name="PaymentMethodComboBox" />
 
         <TextBlock
+            FontSize="20"
             Foreground="Red"
             HorizontalAlignment="Center"
             IsVisible="False"

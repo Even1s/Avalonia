@@ -1,0 +1,43 @@
+<Window
+    CanResize="False"
+    SizeToContent="Height"
+    Title="Авторизация"
+    Width="350"
+    x:Class="NikitApp.MainWindow"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <StackPanel Margin="10" Spacing="10">
+
+        <TextBlock
+            FontSize="24"
+            Text="Авторизация"
+            TextAlignment="Center" />
+
+        <TextBlock
+            FontSize="20"
+            Foreground="Red"
+            HorizontalAlignment="Center"
+            IsVisible="False"
+            Margin="0,0,0,10"
+            Name="MessageTBlock"
+            TextWrapping="WrapWithOverflow"
+            Width="330" />
+
+        <TextBlock FontSize="20">Логин</TextBlock>
+        <TextBox FontSize="18" Name="LoginTBox" />
+        <TextBlock FontSize="20">Пароль</TextBlock>
+        <TextBox
+            FontSize="18"
+            Name="PasswordTBox"
+            PasswordChar="*" />
+        <Button
+            Click="AuthBtn_OnClick"
+            FontSize="20"
+            HorizontalAlignment="Center"
+            Name="AuthBtn">
+            Авторизоваться
+        </Button>
+    </StackPanel>
+
+</Window>

@@ -13,6 +13,7 @@
         <entry key="CafeApp/AuthWindow.axaml" value="CafeApp/CafeApp.csproj" />
         <entry key="CafeApp/MainView.axaml" value="CafeApp/CafeApp.csproj" />
         <entry key="CafeApp/MainWindow.axaml" value="CafeApp/CafeApp.csproj" />
+        <entry key="CafeApp/Views/Admin/AddTableView.axaml" value="CafeApp/CafeApp.csproj" />
         <entry key="CafeApp/Views/Admin/AddTableWindow.axaml" value="CafeApp/CafeApp.csproj" />
         <entry key="CafeApp/Views/Admin/AddWaiterTableWindow.axaml" value="CafeApp/CafeApp.csproj" />
         <entry key="CafeApp/Views/Admin/AdminView.axaml" value="CafeApp/CafeApp.csproj" />
@@ -25,6 +26,15 @@
         <entry key="CafeApp/Views/Waiter/WaiterReportWindow.axaml" value="CafeApp/CafeApp.csproj" />
         <entry key="CafeApp/Views/Waiter/WaiterWindow.axaml" value="CafeApp/CafeApp.csproj" />
         <entry key="CafeApp/Windows/Admin/AdminWindow.axaml" value="CafeApp/CafeApp.csproj" />
+        <entry key="NikitApp/AdminWindows/AddTableWindow.axaml" value="NikitApp/NikitApp.csproj" />
+        <entry key="NikitApp/AdminWindows/AddWaiterTableWindow.axaml" value="NikitApp/NikitApp.csproj" />
+        <entry key="NikitApp/AdminWindows/ShiftEditWindow.axaml" value="NikitApp/NikitApp.csproj" />
+        <entry key="NikitApp/AdminWindows/UserEditWindow.axaml" value="NikitApp/NikitApp.csproj" />
+        <entry key="NikitApp/App.axaml" value="NikitApp/NikitApp.csproj" />
+        <entry key="NikitApp/CookWindows/CookWindow.axaml" value="NikitApp/NikitApp.csproj" />
+        <entry key="NikitApp/MainWindow.axaml" value="NikitApp/NikitApp.csproj" />
+        <entry key="NikitApp/WaiterWindows/OrderEditWindow.axaml" value="NikitApp/NikitApp.csproj" />
+        <entry key="NikitApp/WaiterWindows/WaiterReportWindow.axaml" value="NikitApp/NikitApp.csproj" />
       </map>
     </option>
   </component>

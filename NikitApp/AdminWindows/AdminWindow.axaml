@@ -2,22 +2,19 @@
     Height="800"
     MinHeight="400"
     MinWidth="800"
-    Title="Главная | Администратор"
-    Width="800"
-    x:Class="CafeApp.Views.Admin.AdminView"
-    x:DataType="vm:AdminViewModel"
+    Title="Окно администратора"
+    Width="1200"
+    x:Class="NikitApp.AdminWindows.AdminWindow"
+    x:DataType="vm:AdminWindow"
     xmlns="https://github.com/avaloniaui"
-    xmlns:vm="clr-namespace:CafeApp.ViewModels"
+    xmlns:vm="clr-namespace:NikitApp.AdminWindows"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-
-    <Design.DataContext>
-        <vm:AdminViewModel />
-    </Design.DataContext>
 
     <TabControl>
 
+        <!--  Вкладка 1: Сотрудники  -->
         <TabItem Header="Сотрудники">
-            <StackPanel Orientation="Vertical" Spacing="15">
+            <StackPanel Orientation="Vertical">
                 <StackPanel
                     HorizontalAlignment="Right"
                     Orientation="Horizontal"
@@ -30,12 +27,12 @@
                         Click="UserDeleteBtn_OnClick"
                         Content="Удалить"
                         Foreground="Red"
-                        IsEnabled="{Binding IsEnabledUserDeleteBtn}"
+                        IsEnabled="False"
                         Name="UserDeleteBtn" />
                     <Button
                         Click="UserEditBtn_OnClick"
                         Content="Изменить"
-                        IsEnabled="{Binding IsEnabledUserEditBtn}"
+                        IsEnabled="False"
                         Name="UserEditBtn" />
                     <Button
                         Click="AddUserBtn_OnClick"
@@ -49,15 +46,13 @@
                     ColumnWidth="auto"
                     IsReadOnly="True"
                     ItemsSource="{Binding UsersList}"
-                    Loaded="Control_OnLoaded"
                     Name="UsersDGrid"
-                    SelectedItem="{Binding SelectedUser}"
                     SelectionChanged="UsersDataGrid_OnSelectionChanged">
                     <DataGrid.Columns>
                         <DataGridTextColumn Binding="{Binding Login}" Header="Логин" />
                         <DataGridTextColumn Binding="{Binding LastName}" Header="Фамилия" />
-                        <DataGridTextColumn Binding="{Binding FirstName}" Header="Имя" />
-                        <DataGridTextColumn Binding="{Binding Patronymic}" Header="Отчество" />
+                        <DataGridTextColumn Binding="{Binding Name}" Header="Имя" />
+                        <DataGridTextColumn Binding="{Binding MiddleName}" Header="Отчество" />
                         <DataGridTextColumn Binding="{Binding Role.Name}" Header="Роль" />
                         <DataGridTextColumn Binding="{Binding Status}" Header="Статус" />
                     </DataGrid.Columns>
@@ -65,6 +60,7 @@
             </StackPanel>
         </TabItem>
 
+        <!--  Вкладка 2: Смены  -->
         <TabItem Header="Смены">
             <StackPanel HorizontalAlignment="Stretch" Orientation="Vertical">
                 <StackPanel
@@ -80,13 +76,13 @@
                         Content="Удалить"
                         Foreground="Red"
                         HorizontalAlignment="Right"
-                        IsEnabled="{Binding IsEnabledShiftDeleteBtn}"
+                        IsEnabled="False"
                         Name="ShiftDeleteBtn" />
                     <Button
                         Click="ShiftEditBtn_OnClick"
                         Content="Изменить"
                         HorizontalAlignment="Right"
-                        IsEnabled="{Binding IsEnabledShiftEditBtn}"
+                        IsEnabled="False"
                         Name="ShiftEditBtn" />
                     <Button
                         Click="AddShiftBtn_OnClick"
@@ -103,15 +99,16 @@
                     Name="ShiftsDGrid"
                     SelectionChanged="ShiftsDataGrid_OnSelectionChanged">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Binding="{Binding OpenAt.Date, StringFormat=dd.MM.yyyy}" Header="Дата" />
-                        <DataGridTextColumn Binding="{Binding OpenAt, StringFormat=HH:mm}" Header="Начало" />
-                        <DataGridTextColumn Binding="{Binding CloseAt, StringFormat=HH:mm}" Header="Конец" />
+                        <DataGridTextColumn Binding="{Binding ShiftStarted.Date, StringFormat=dd.MM.yyyy}" Header="Дата" />
+                        <DataGridTextColumn Binding="{Binding ShiftStarted, StringFormat=HH:mm}" Header="Начало" />
+                        <DataGridTextColumn Binding="{Binding ShiftEnds, StringFormat=HH:mm}" Header="Конец" />
                         <DataGridTextColumn Binding="{Binding Users.Count}" Header="Сотрудники" />
                     </DataGrid.Columns>
                 </DataGrid>
             </StackPanel>
         </TabItem>
 
+        <!--  Вкладка 3: Столики  -->
         <TabItem Header="Столики">
             <StackPanel Orientation="Vertical">
                 <StackPanel
@@ -126,7 +123,7 @@
                         Click="DeleteTableBtn_OnClick"
                         Content="Удалить"
                         Foreground="Red"
-                        IsEnabled="{Binding IsEnabledDeleteTableBtn}"
+                        IsEnabled="False"
                         Name="DeleteTableBtn" />
                     <Button
                         Click="AddTableBtn_OnClick"
@@ -149,6 +146,7 @@
             </StackPanel>
         </TabItem>
 
+        <!--  Вкладка 4: Заказы  -->
         <TabItem Header="Заказы">
             <StackPanel Orientation="Vertical">
                 <StackPanel
@@ -162,7 +160,7 @@
                     <Button
                         Click="EditOrderBtn_OnClick"
                         Content="Изменить"
-                        IsEnabled="{Binding IsEnabledEditOrderBtn}"
+                        IsEnabled="False"
                         Name="EditOrderBtn" />
                 </StackPanel>
                 <DataGrid
@@ -176,17 +174,18 @@
                     SelectionChanged="OrdersDataGrid_OnSelectionChanged">
                     <DataGrid.Columns>
                         <DataGridTextColumn Binding="{Binding Table.Number}" Header="Столик" />
-                        <DataGridTextColumn Binding="{Binding ClientsNumber}" Header="Кол-во клиентов" />
+                        <DataGridTextColumn Binding="{Binding ClientsAmount}" Header="Кол-во клиентов" />
                         <DataGridTextColumn Binding="{Binding Status}" Header="Статус" />
-                        <DataGridTextColumn Binding="{Binding Shift.OpenAt, StringFormat=dd.MM.yyyy}" Header="Смена" />
-                        <DataGridTextColumn Binding="{Binding OpenAt, StringFormat=HH:mm}" Header="Сделан в" />
-                        <DataGridTextColumn Binding="{Binding CloseAt, StringFormat=HH:mm, TargetNullValue='Не выполнен'}" Header="Выполнен в" />
-                        <DataGridTextColumn Binding="{Binding Dishes}" Header="Содержимое заказа" />
+                        <DataGridTextColumn Binding="{Binding Shift.ShiftStarted, StringFormat=dd.MM.yyyy}" Header="Смена" />
+                        <DataGridTextColumn Binding="{Binding CreatedAt, StringFormat=HH:mm}" Header="Сделан в" />
+                        <DataGridTextColumn Binding="{Binding CompletedAt, StringFormat=HH:mm, TargetNullValue='Не выполнен'}" Header="Выполнен в" />
+                        <DataGridTextColumn Binding="{Binding Content}" Header="Содержимое заказа" />
                     </DataGrid.Columns>
                 </DataGrid>
             </StackPanel>
         </TabItem>
 
+        <!--  Вкладка 5: Отчеты  -->
         <TabItem Header="Отчеты">
             <StackPanel
                 HorizontalAlignment="Left"
@@ -215,13 +214,13 @@
                     FontSize="20"
                     Foreground="Red"
                     HorizontalAlignment="Center"
-                    IsVisible="{Binding IsVisibleError}"
-                    Name="ReportErrorTextBlock"
-                    Text="{Binding Error}" />
+                    IsVisible="False"
+                    Name="ReportErrorTextBlock" />
 
             </StackPanel>
         </TabItem>
 
+        <!--  Вкладка 6: Профиль  -->
         <TabItem Header="Профиль">
             <StackPanel
                 Margin="10"

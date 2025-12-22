@@ -1,0 +1,144 @@
+<Window
+    MinHeight="400"
+    MinWidth="750"
+    SizeToContent="Height"
+    Title="Окно смены"
+    Width="750"
+    x:Class="NikitApp.AdminWindows.ShiftEditWindow"
+    x:DataType="vm:ShiftEditWindow"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:vm="clr-namespace:NikitApp.AdminWindows"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <ScrollViewer>
+        <StackPanel
+            Margin="20"
+            Orientation="Vertical"
+            Spacing="5"
+            VerticalAlignment="Top">
+
+            <TextBlock FontSize="20" Text="Дата смены" />
+            <DatePicker
+                FontSize="18"
+                Margin="0,0,0,10"
+                Name="ShiftDPicker" />
+
+            <TextBlock FontSize="20" Text="Начало смены" />
+            <TimePicker
+                FontSize="18"
+                Margin="0,0,0,10"
+                Name="ShiftStartTPicker" />
+
+            <TextBlock FontSize="20" Text="Конец смены" />
+            <TimePicker
+                FontSize="18"
+                Margin="0,0,0,10"
+                Name="ShiftEndTPicker" />
+
+            <TextBlock FontSize="20" Text="Сотрудники" />
+            <DataGrid
+                AutoGenerateColumns="False"
+                CanUserReorderColumns="False"
+                CanUserResizeColumns="True"
+                ColumnWidth="auto"
+                FontSize="18"
+                ItemsSource="{Binding Users}"
+                Margin="0,0,0,30"
+                Name="ShiftUsersDataGrid"
+                SelectionMode="Single">
+                <DataGrid.Columns>
+                    <DataGridTextColumn
+                        Binding="{Binding User.Login}"
+                        Header="Логин"
+                        IsReadOnly="True" />
+                    <DataGridTextColumn
+                        Binding="{Binding User.LastName}"
+                        Header="Фамилия"
+                        IsReadOnly="True" />
+                    <DataGridTextColumn
+                        Binding="{Binding User.Name}"
+                        Header="Имя"
+                        IsReadOnly="True" />
+                    <DataGridTextColumn
+                        Binding="{Binding User.MiddleName}"
+                        Header="Отчество"
+                        IsReadOnly="True" />
+                    <DataGridTextColumn
+                        Binding="{Binding User.Role.Name}"
+                        Header="Роль"
+                        IsReadOnly="True" />
+                    <DataGridTemplateColumn Header="Работает в смену">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox
+                                    HorizontalAlignment="Center"
+                                    IsChecked="{Binding IsSelected}"
+                                    IsCheckedChanged="ToggleButton_OnIsCheckedChanged" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <StackPanel
+                HorizontalAlignment="Left"
+                Margin="0,0,0,10"
+                Orientation="Horizontal"
+                Spacing="10">
+                <TextBlock
+                    FontSize="20"
+                    Text="Официанты на столиках"
+                    VerticalAlignment="Center" />
+                <Button
+                    Click="DeleteWaiterTableBtn_OnClick"
+                    Content="Удалить"
+                    Foreground="Red"
+                    IsEnabled="False"
+                    Name="DeleteWaiterTableBtn" />
+                <Button
+                    Click="AddWaiterTableBtn_OnClick"
+                    Content="Добавить"
+                    Name="AddWaiterTableBtn" />
+            </StackPanel>
+            <DataGrid
+                AutoGenerateColumns="False"
+                CanUserReorderColumns="False"
+                CanUserResizeColumns="True"
+                ColumnWidth="auto"
+                IsReadOnly="True"
+                ItemsSource="{Binding WaiterTables}"
+                Margin="0,0,0,30"
+                Name="WaiterTablesDataGrid"
+                SelectionChanged="WaiterTablesDataGrid_OnSelectionChanged">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding User.Login}" Header="Логин официанта" />
+                    <DataGridTextColumn Binding="{Binding Table.Number}" Header="Номер столика" />
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <TextBlock
+                FontSize="20"
+                Foreground="Red"
+                HorizontalAlignment="Center"
+                IsVisible="False"
+                Name="ErrorTextBlock" />
+
+            <StackPanel Orientation="Horizontal" Spacing="25">
+                <Button
+                    Click="SaveBtn_OnClick"
+                    Content="Сохранить"
+                    HorizontalContentAlignment="Center"
+                    Name="SaveBtn"
+                    Width="165" />
+                <Button
+                    Click="CancelBtn_OnClick"
+                    Content="Отмена"
+                    HorizontalContentAlignment="Center"
+                    Name="CancelBtn"
+                    Width="165" />
+            </StackPanel>
+
+        </StackPanel>
+    </ScrollViewer>
+
+</Window>

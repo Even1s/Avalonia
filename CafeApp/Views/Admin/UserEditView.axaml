@@ -118,6 +118,7 @@
 
             <StackPanel Spacing="10">
                 <TextBlock
+                    FontSize="20"
                     Foreground="Red"
                     HorizontalAlignment="Center"
                     IsVisible="{Binding IsVisibleError}"

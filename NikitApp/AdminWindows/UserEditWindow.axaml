@@ -2,22 +2,16 @@
     Height="800"
     MinHeight="600"
     MinWidth="400"
-    Title="Создание пользователя"
+    Title="Окно пользователя"
     Width="400"
-    x:Class="CafeApp.Views.Admin.UserCreateView"
-    x:DataType="vm:UserCreateViewModel"
+    x:Class="NikitApp.AdminWindows.UserEditWindow"
+    x:DataType="vm:UserEditWindow"
     xmlns="https://github.com/avaloniaui"
-    xmlns:vm="clr-namespace:CafeApp.ViewModels"
+    xmlns:vm="clr-namespace:NikitApp.AdminWindows"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-
-    <Design.DataContext>
-        <vm:UserCreateViewModel />
-    </Design.DataContext>
-
 
     <ScrollViewer>
         <StackPanel
-            Loaded="Control_OnLoaded"
             Margin="20"
             Orientation="Vertical"
             Spacing="15"
@@ -25,7 +19,7 @@
 
             <TextBlock
                 FontSize="24"
-                Text="Создание пользователя"
+                Text="Окно пользователя"
                 TextAlignment="Center" />
 
             <StackPanel
@@ -33,51 +27,44 @@
                 Spacing="10"
                 VerticalAlignment="Top">
 
+                <!--  Основные поля  -->
                 <TextBlock FontSize="20">Логин</TextBlock>
-                <TextBox
-                    FontSize="18"
-                    Name="LoginTBox"
-                    Text="{Binding Login}" />
-
+                <TextBox FontSize="18" Name="LoginTBox" />
                 <TextBlock FontSize="20">Пароль</TextBlock>
                 <TextBox
                     FontSize="18"
                     Name="PasswordTBox"
-                    PasswordChar="*"
-                    Text="{Binding Password}" />
-
+                    PasswordChar="*" />
                 <TextBlock FontSize="20">Имя</TextBlock>
-                <TextBox
-                    FontSize="18"
-                    Name="FirstNameTBox"
-                    Text="{Binding FirstName}" />
+                <TextBox FontSize="18" Name="NameTBox" />
                 <TextBlock FontSize="20">Фамилия</TextBlock>
-                <TextBox
-                    FontSize="18"
-                    Name="LastNameTBox"
-                    Text="{Binding LastName}" />
+                <TextBox FontSize="18" Name="LastNameTBox" />
                 <TextBlock FontSize="20">Отчество</TextBlock>
-                <TextBox
-                    FontSize="18"
-                    Name="PatronymicTBox"
-                    Text="{Binding Patronymic}" />
-
+                <TextBox FontSize="18" Name="MiddleNameTBox" />
                 <TextBlock FontSize="20">Дата рождения</TextBlock>
                 <DatePicker
                     FontSize="18"
                     Name="BirthdayDPicker"
-                    SelectedDate="{Binding Birthday}" />
+                    Width="300" />
 
+                <!--  Выбор роли  -->
                 <TextBlock FontSize="20">Роль</TextBlock>
                 <ComboBox
                     DisplayMemberBinding="{Binding Name}"
-                    ItemsSource="{Binding RolesList}"
+                    ItemsSource="{Binding Roles}"
                     Name="RoleCBox"
-                    SelectedItem="{Binding Role}"
-                    Width="295" />
+                    Width="300" />
+
+                <!--  Выбор статуса  -->
+                <TextBlock FontSize="20">Статус</TextBlock>
+                <ComboBox
+                    ItemsSource="{Binding Statuses}"
+                    Name="StatusCBox"
+                    Width="300" />
 
             </StackPanel>
 
+            <!--  Выбор фото сотрудника  -->
             <StackPanel
                 Orientation="Vertical"
                 Spacing="10"
@@ -86,9 +73,8 @@
                 <Image
                     Height="200"
                     Name="EmployeeImageBox"
-                    Source="{Binding PhotoSource}"
                     VerticalAlignment="Top"
-                    Width="200" />
+                    Width="300" />
                 <Button
                     Click="UserPhotoBtn_OnClick"
                     Content="Выбрать фото пользователя"
@@ -97,17 +83,17 @@
                     VerticalAlignment="Top" />
             </StackPanel>
 
+            <!--  Выбор фото договора  -->
             <StackPanel
                 Orientation="Vertical"
                 Spacing="10"
                 VerticalAlignment="Top">
                 <TextBlock FontSize="20">Договор</TextBlock>
                 <Image
-                    Height="300"
+                    Height="200"
                     Name="ContractImageBox"
-                    Source="{Binding ContractSource}"
                     VerticalAlignment="Top"
-                    Width="200" />
+                    Width="300" />
                 <Button
                     Click="ContractPhotoBtn_OnClick"
                     Content="Выбрать фото договора"
@@ -116,19 +102,18 @@
                     VerticalAlignment="Top" />
             </StackPanel>
 
-            <StackPanel Spacing="10">
+            <StackPanel Margin="0,10,0,0" Spacing="10">
                 <TextBlock
                     FontSize="20"
                     Foreground="Red"
                     HorizontalAlignment="Center"
-                    IsVisible="{Binding IsVisibleError}"
-                    Name="ErrorTextBlock"
-                    Text="{Binding Error}" />
+                    IsVisible="False"
+                    Name="ErrorTextBlock" />
 
                 <StackPanel Orientation="Horizontal" Spacing="25">
                     <Button
                         Click="SaveBtn_OnClick"
-                        Content="Создать"
+                        Content="Сохранить"
                         HorizontalContentAlignment="Center"
                         Name="SaveBtn"
                         Width="165" />
@@ -136,11 +121,10 @@
                         Click="BackBtn_OnClick"
                         Content="Отмена"
                         HorizontalContentAlignment="Center"
-                        Name="CancelBtn"
+                        Name="BackBtn"
                         Width="165" />
                 </StackPanel>
             </StackPanel>
-
         </StackPanel>
     </ScrollViewer>
 

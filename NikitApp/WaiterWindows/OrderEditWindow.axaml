@@ -1,0 +1,89 @@
+<Window
+    SizeToContent="Height"
+    Title="Окно заказа"
+    Width="340"
+    x:Class="NikitApp.WaiterWindows.OrderEditWindow"
+    x:DataType="vm:OrderEditWindow"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:vm="clr-namespace:NikitApp.WaiterWindows"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <StackPanel
+        HorizontalAlignment="Left"
+        Margin="20"
+        Orientation="Vertical"
+        Spacing="10"
+        VerticalAlignment="Top">
+
+        <TextBlock FontSize="20" Text="Столик" />
+        <ComboBox
+            DisplayMemberBinding="{Binding Number}"
+            FontSize="18"
+            ItemsSource="{Binding Tables}"
+            Name="TableComboBox"
+            Width="200" />
+
+        <TextBlock FontSize="20" Text="Статус" />
+        <ComboBox
+            FontSize="18"
+            ItemsSource="{Binding Statuses}"
+            Name="StatusComboBox"
+            Width="300" />
+
+        <TextBlock FontSize="20" Text="Кол-во клиентов" />
+        <TextBox
+            FontSize="18"
+            HorizontalAlignment="Left"
+            Name="ClientsAmountTextBox"
+            Width="200" />
+
+        <TextBlock FontSize="20" Text="Содержимое заказа" />
+        <TextBox
+            FontSize="18"
+            HorizontalAlignment="Left"
+            Name="ContentTextBox"
+            TextWrapping="Wrap"
+            Width="300" />
+
+        <TextBlock FontSize="20" Text="Итоговая сумма заказа" />
+        <TextBox
+            FontSize="18"
+            HorizontalAlignment="Left"
+            Name="TotalAmountTextBox"
+            Width="200" />
+
+        <TextBlock FontSize="20" Text="Способ оплаты" />
+        <ComboBox
+            FontSize="18"
+            ItemsSource="{Binding PaymentMethods}"
+            Name="PaymentMethodComboBox"
+            Width="300" />
+
+        <TextBlock
+            FontSize="20"
+            Foreground="Red"
+            HorizontalAlignment="Left"
+            IsVisible="False"
+            Name="ErrorTextBlock" />
+
+        <StackPanel Orientation="Horizontal" Spacing="20">
+            <Button
+                Click="SaveBtn_OnClick"
+                Content="Сохранить"
+                HorizontalAlignment="Center"
+                HorizontalContentAlignment="Center"
+                Name="SaveBtn"
+                Width="140" />
+
+            <Button
+                Click="CancelBtn_OnClick"
+                Content="Отмена"
+                HorizontalAlignment="Center"
+                HorizontalContentAlignment="Center"
+                Name="CancelBtn"
+                Width="140" />
+        </StackPanel>
+
+    </StackPanel>
+
+</Window>

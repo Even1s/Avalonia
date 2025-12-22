@@ -1,0 +1,80 @@
+<Window
+    Height="800"
+    MinHeight="400"
+    MinWidth="800"
+    Title="Окно повара"
+    Width="1200"
+    x:Class="NikitApp.CookWindows.CookWindow"
+    x:DataType="vm:CookWindow"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:vm="clr-namespace:NikitApp.CookWindows"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <TabControl>
+
+        <!--  Вкладка 1: Заказы  -->
+        <TabItem Header="Принятые заказы">
+            <StackPanel Orientation="Vertical">
+                <StackPanel
+                    HorizontalAlignment="Right"
+                    Orientation="Horizontal"
+                    Spacing="10">
+                    <TextBlock
+                        Name="CurrentShiftTextBlock"
+                        Text="{Binding CurrentShift.ShiftStarted, StringFormat=dd.MM.yyyy HH:mm}"
+                        VerticalAlignment="Center" />
+                    <Button
+                        Click="RefreshOrdersBtn_OnClick"
+                        Content="Обновить"
+                        Name="RefreshOrdersBtn" />
+                    <Button
+                        Click="EditOrderBtn_OnClick"
+                        Content="Изменить"
+                        IsEnabled="False"
+                        Name="EditOrderBtn" />
+                </StackPanel>
+                <DataGrid
+                    AutoGenerateColumns="False"
+                    CanUserReorderColumns="False"
+                    CanUserResizeColumns="True"
+                    ColumnWidth="auto"
+                    IsReadOnly="True"
+                    ItemsSource="{Binding Orders}"
+                    Name="OrdersDataGrid"
+                    SelectionChanged="OrdersDataGrid_OnSelectionChanged">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding Table.Number}" Header="Столик" />
+                        <DataGridTextColumn Binding="{Binding ClientsAmount}" Header="Кол-во клиентов" />
+                        <DataGridTextColumn Binding="{Binding Status}" Header="Статус" />
+                        <DataGridTextColumn Binding="{Binding CreatedAt, StringFormat=HH:mm}" Header="Сделан в" />
+                        <DataGridTextColumn Binding="{Binding CompletedAt, StringFormat=HH:mm, TargetNullValue='Не выполнен'}" Header="Выполнен в" />
+                        <DataGridTextColumn Binding="{Binding Content}" Header="Содержимое заказа" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </StackPanel>
+        </TabItem>
+
+        <!--  Вкладка 2: Профиль  -->
+        <TabItem Header="Профиль">
+            <StackPanel
+                Margin="10"
+                Orientation="Horizontal"
+                Spacing="10"
+                VerticalAlignment="Top">
+                <TextBlock
+                    HorizontalAlignment="Left"
+                    Text="Роль: Повар"
+                    VerticalAlignment="Center" />
+                <Button
+                    Click="LogOutBtn_OnClick"
+                    Content="Выйти"
+                    Foreground="Red"
+                    HorizontalAlignment="Left"
+                    Name="LogOutBtn"
+                    VerticalAlignment="Center" />
+            </StackPanel>
+        </TabItem>
+
+    </TabControl>
+
+</Window>

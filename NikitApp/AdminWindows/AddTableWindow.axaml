@@ -1,16 +1,10 @@
 <Window
     SizeToContent="Height"
-    Title="Создание столика | Администратор"
+    Title="Создание столика"
     Width="270"
-    x:Class="CafeApp.Views.Admin.AddTableView"
-    x:DataType="vm:AddTableViewModel"
+    x:Class="NikitApp.AdminWindows.AddTableWindow"
     xmlns="https://github.com/avaloniaui"
-    xmlns:vm="clr-namespace:CafeApp.ViewModels"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-
-    <Design.DataContext>
-        <vm:AddTableViewModel />
-    </Design.DataContext>
 
     <StackPanel
         Margin="20"
@@ -22,14 +16,13 @@
             TextAlignment="Center" />
 
         <TextBlock FontSize="20">Номер</TextBlock>
-        <TextBox Name="NumberTextBox" Text="{Binding TablesNumber}" />
+        <TextBox Name="NumberTextBox" />
 
         <TextBlock
             FontSize="20"
             Foreground="Red"
-            IsVisible="{Binding IsVisibleError}"
-            Name="ErrorTextBlock"
-            Text="{Binding ErrorText}" />
+            IsVisible="False"
+            Name="ErrorTextBlock" />
 
         <StackPanel Orientation="Horizontal" Spacing="20">
             <Button

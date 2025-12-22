@@ -1,0 +1,146 @@
+<Window
+    Height="800"
+    MinHeight="600"
+    MinWidth="400"
+    Title="Создание пользователя"
+    Width="400"
+    x:Class="CafeApp.Views.Admin.UserCreateView"
+    x:DataType="vm:UserCreateViewModel"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:vm="clr-namespace:CafeApp.ViewModels"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Design.DataContext>
+        <vm:UserCreateViewModel />
+    </Design.DataContext>
+
+
+    <ScrollViewer>
+        <StackPanel
+            Loaded="Control_OnLoaded"
+            Margin="20"
+            Orientation="Vertical"
+            Spacing="15"
+            VerticalAlignment="Top">
+
+            <TextBlock
+                FontSize="24"
+                Text="Создание пользователя"
+                TextAlignment="Center" />
+
+            <StackPanel
+                Orientation="Vertical"
+                Spacing="10"
+                VerticalAlignment="Top">
+
+                <TextBlock FontSize="20">Логин</TextBlock>
+                <TextBox
+                    FontSize="18"
+                    Name="LoginTBox"
+                    Text="{Binding Login}" />
+
+                <TextBlock FontSize="20">Пароль</TextBlock>
+                <TextBox
+                    FontSize="18"
+                    Name="PasswordTBox"
+                    PasswordChar="*"
+                    Text="{Binding Password}" />
+
+                <TextBlock FontSize="20">Имя</TextBlock>
+                <TextBox
+                    FontSize="18"
+                    Name="FirstNameTBox"
+                    Text="{Binding FirstName}" />
+                <TextBlock FontSize="20">Фамилия</TextBlock>
+                <TextBox
+                    FontSize="18"
+                    Name="LastNameTBox"
+                    Text="{Binding LastName}" />
+                <TextBlock FontSize="20">Отчество</TextBlock>
+                <TextBox
+                    FontSize="18"
+                    Name="PatronymicTBox"
+                    Text="{Binding Patronymic}" />
+
+                <TextBlock FontSize="20">Дата рождения</TextBlock>
+                <DatePicker
+                    FontSize="18"
+                    Name="BirthdayDPicker"
+                    SelectedDate="{Binding Birthday}" />
+
+                <TextBlock FontSize="20">Роль</TextBlock>
+                <ComboBox
+                    DisplayMemberBinding="{Binding Name}"
+                    ItemsSource="{Binding RolesList}"
+                    Name="RoleCBox"
+                    SelectedItem="{Binding Role}"
+                    Width="295" />
+
+            </StackPanel>
+
+            <StackPanel
+                Orientation="Vertical"
+                Spacing="10"
+                VerticalAlignment="Top">
+                <TextBlock FontSize="20">Фото</TextBlock>
+                <Image
+                    Height="200"
+                    Name="EmployeeImageBox"
+                    Source="{Binding PhotoSource}"
+                    VerticalAlignment="Top"
+                    Width="200" />
+                <Button
+                    Click="UserPhotoBtn_OnClick"
+                    Content="Выбрать фото пользователя"
+                    HorizontalAlignment="Center"
+                    Name="UserPhotoBtn"
+                    VerticalAlignment="Top" />
+            </StackPanel>
+
+            <StackPanel
+                Orientation="Vertical"
+                Spacing="10"
+                VerticalAlignment="Top">
+                <TextBlock FontSize="20">Договор</TextBlock>
+                <Image
+                    Height="300"
+                    Name="ContractImageBox"
+                    Source="{Binding ContractSource}"
+                    VerticalAlignment="Top"
+                    Width="200" />
+                <Button
+                    Click="ContractPhotoBtn_OnClick"
+                    Content="Выбрать фото договора"
+                    HorizontalAlignment="Center"
+                    Name="ContractPhotoBtn"
+                    VerticalAlignment="Top" />
+            </StackPanel>
+
+            <StackPanel Spacing="10">
+                <TextBlock
+                    Foreground="Red"
+                    HorizontalAlignment="Center"
+                    IsVisible="{Binding IsVisibleError}"
+                    Name="ErrorTextBlock"
+                    Text="{Binding Error}" />
+
+                <StackPanel Orientation="Horizontal" Spacing="25">
+                    <Button
+                        Click="SaveBtn_OnClick"
+                        Content="Создать"
+                        HorizontalContentAlignment="Center"
+                        Name="SaveBtn"
+                        Width="165" />
+                    <Button
+                        Click="BackBtn_OnClick"
+                        Content="Отмена"
+                        HorizontalContentAlignment="Center"
+                        Name="CancelBtn"
+                        Width="165" />
+                </StackPanel>
+            </StackPanel>
+
+        </StackPanel>
+    </ScrollViewer>
+
+</Window>

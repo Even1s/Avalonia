@@ -11,9 +11,9 @@
     xmlns:vm="clr-namespace:CafeApp.ViewModels"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <Window.DataContext>
+    <Design.DataContext>
         <vm:MainViewModel />
-    </Window.DataContext>
+    </Design.DataContext>
 
     <StackPanel Margin="10" Spacing="10">
 
@@ -24,8 +24,9 @@
         <TextBlock
             FontSize="20"
             Foreground="Red"
+            IsVisible="{Binding IsVisible}"
             Name="ErrorTBlock"
-            Text="{Binding Login}"
+            Text="{Binding Error}"
             TextWrapping="WrapWithOverflow"
             Width="330" />
 
@@ -35,9 +36,14 @@
             Name="LoginTBox"
             Text="{Binding Login}" />
         <TextBlock FontSize="20">Пароль</TextBlock>
-        <TextBox FontSize="18" Name="PasswordTBox" />
+        <TextBox
+            FontSize="18"
+            Name="PasswordTBox"
+            PasswordChar="*"
+            Text="{Binding Password}" />
 
         <Button
+            Click="AuthBtn_OnClick"
             FontSize="20"
             HorizontalAlignment="Center"
             Name="AuthBtn">

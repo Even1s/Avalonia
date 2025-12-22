@@ -1,0 +1,49 @@
+<Window
+    SizeToContent="Height"
+    Title="Создание столика | Администратор"
+    Width="270"
+    x:Class="CafeApp.Views.Admin.AddTableView"
+    x:DataType="vm:AddTableViewModel"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:vm="clr-namespace:CafeApp.ViewModels"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Design.DataContext>
+        <vm:AddTableViewModel />
+    </Design.DataContext>
+
+    <StackPanel
+        Margin="20"
+        Orientation="Vertical"
+        Spacing="10">
+        <TextBlock
+            FontSize="24"
+            Text="Создание столика"
+            TextAlignment="Center" />
+
+        <TextBlock FontSize="20">Номер</TextBlock>
+        <TextBox Name="NumberTextBox" Text="{Binding TablesNumber}" />
+
+        <TextBlock
+            Foreground="Red"
+            IsVisible="{Binding IsVisibleError}"
+            Name="ErrorTextBlock"
+            Text="{Binding ErrorText}" />
+
+        <StackPanel Orientation="Horizontal" Spacing="20">
+            <Button
+                Click="SaveBtn_OnClick"
+                Content="Создать"
+                HorizontalContentAlignment="Center"
+                Name="SaveBtn"
+                Width="105" />
+            <Button
+                Click="CancelBtn_OnClick"
+                Content="Отмена"
+                HorizontalContentAlignment="Center"
+                Name="CancelBtn"
+                Width="105" />
+        </StackPanel>
+    </StackPanel>
+
+</Window>

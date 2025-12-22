@@ -38,17 +38,17 @@ public class CafeDbContext : DbContext
 
             entity.ToTable("orders");
 
-            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Id).HasColumnName("order_id");
             entity.Property(e => e.ClientsNumber)
                 .HasDefaultValue(1)
-                .HasColumnName("clients_amount");
-            entity.Property(e => e.CloseAt).HasColumnName("completed_at");
+                .HasColumnName("clients_number");
+            entity.Property(e => e.CloseAt).HasColumnName("close_at");
             entity.Property(e => e.Dishes)
                 .HasColumnName("dishes")
                 .HasMaxLength(1024);
-            entity.Property(e => e.CreatedAt).HasColumnName("created_at");
+            entity.Property(e => e.OpenAt).HasColumnName("open_at");
             entity.Property(e => e.Payment)
-                .HasColumnName("payment_method")
+                .HasColumnName("payment")
                 .HasColumnType("money");
             entity.Property(e => e.ShiftId).HasColumnName("shift_id");
             entity.Property(e => e.Status)
@@ -75,10 +75,10 @@ public class CafeDbContext : DbContext
 
             entity.HasIndex(e => e.Name, "roles_unique").IsUnique();
 
-            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Id).HasColumnName("role_id");
             entity.Property(e => e.Name)
                 .HasMaxLength(50)
-                .HasColumnName("name");
+                .HasColumnName("role_name");
         });
 
         modelBuilder.Entity<Shift>(entity =>
@@ -87,7 +87,7 @@ public class CafeDbContext : DbContext
 
             entity.ToTable("shifts");
 
-            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Id).HasColumnName("shift_id");
             entity.Property(e => e.CloseAt)
                 .HasColumnType("timestamp without time zone")
                 .HasColumnName("close_at");
@@ -119,8 +119,8 @@ public class CafeDbContext : DbContext
 
             entity.ToTable("tables");
 
-            entity.Property(e => e.Id).HasColumnName("id");
-            entity.Property(e => e.Number).HasColumnName("number");
+            entity.Property(e => e.Id).HasColumnName("table_id");
+            entity.Property(e => e.Number).HasColumnName("table_number");
         });
 
         modelBuilder.Entity<User>(entity =>
@@ -129,7 +129,7 @@ public class CafeDbContext : DbContext
 
             entity.ToTable("users");
 
-            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Id).HasColumnName("user_id");
             entity.Property(e => e.Birthday).HasColumnName("birthday");
             entity.Property(e => e.Photo).HasColumnName("photo");
             entity.Property(e => e.Contract).HasColumnName("contract");
@@ -145,9 +145,9 @@ public class CafeDbContext : DbContext
             entity.Property(e => e.Login)
                 .HasMaxLength(16)
                 .HasColumnName("login");
-            entity.Property(e => e.Password)
+            entity.Property(e => e.PasswordCrypt)
                 .HasMaxLength(48)
-                .HasColumnName("password_hash");
+                .HasColumnName("password");
             entity.Property(e => e.RoleId).HasColumnName("role_id");
             entity.Property(e => e.Status)
                 .HasMaxLength(16)

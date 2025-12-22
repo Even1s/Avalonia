@@ -1,0 +1,73 @@
+<Window
+    Height="600"
+    Title="Окно изменения/добавления заказа"
+    Width="400"
+    x:Class="CafeApp.WaiterWindows.OrderEditWindow"
+    x:DataType="vm:OrderEditWindow"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:vm="clr-namespace:CafeApp.WaiterWindows"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <StackPanel
+        HorizontalAlignment="Left"
+        Margin="20"
+        Orientation="Vertical"
+        Spacing="10"
+        VerticalAlignment="Top">
+        <TextBlock
+            FontSize="24"
+            Text="Заказ"
+            TextAlignment="Center" />
+
+        <TextBlock FontSize="20">Номер столика</TextBlock>
+        <ComboBox
+            DisplayMemberBinding="{Binding Number}"
+            ItemsSource="{Binding Tables}"
+            Name="TableComboBox"
+            Width="200" />
+
+        <TextBlock FontSize="20">Статус</TextBlock>
+        <ComboBox
+            ItemsSource="{Binding Statuses}"
+            Name="StatusComboBox"
+            Width="200" />
+
+        <TextBlock FontSize="20">Кол-во клиентов</TextBlock>
+        <TextBox Name="ClientsAmountTextBox" />
+
+        <TextBlock FontSize="20">Блюда</TextBlock>
+        <TextBox Name="ContentTextBox" TextWrapping="Wrap" />
+
+        <TextBlock FontSize="20">Итоговая сумма</TextBlock>
+        <TextBox Name="TotalAmountTextBox" />
+
+        <TextBlock FontSize="20">Способ оплаты</TextBlock>
+        <ComboBox
+            ItemsSource="{Binding PaymentMethods}"
+            MinWidth="150"
+            Name="PaymentMethodComboBox" />
+
+        <TextBlock
+            Foreground="Red"
+            HorizontalAlignment="Center"
+            IsVisible="False"
+            Name="ErrorTextBlock" />
+
+        <StackPanel Orientation="Horizontal" Spacing="25">
+            <Button
+                Click="SaveBtn_OnClick"
+                Content="Сохранить"
+                HorizontalContentAlignment="Center"
+                Name="SaveBtn"
+                Width="165" />
+            <Button
+                Click="CancelBtn_OnClick"
+                Content="Отмена"
+                HorizontalContentAlignment="Center"
+                Name="CancelBtn"
+                Width="165" />
+        </StackPanel>
+
+    </StackPanel>
+
+</Window>

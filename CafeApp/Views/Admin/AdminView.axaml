@@ -1,0 +1,246 @@
+<Window
+    Height="800"
+    MinHeight="400"
+    MinWidth="800"
+    Title="Главная | Администратор"
+    Width="800"
+    x:Class="CafeApp.Views.Admin.AdminView"
+    x:DataType="vm:AdminViewModel"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:vm="clr-namespace:CafeApp.ViewModels"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Design.DataContext>
+        <vm:AdminViewModel />
+    </Design.DataContext>
+
+    <TabControl>
+
+        <TabItem Header="Сотрудники">
+            <StackPanel Orientation="Vertical" Spacing="15">
+                <StackPanel
+                    HorizontalAlignment="Right"
+                    Orientation="Horizontal"
+                    Spacing="10">
+                    <Button
+                        Click="RefreshUsersBtn_OnClick"
+                        Content="Обновить"
+                        Name="RefreshUsersBtn" />
+                    <Button
+                        Click="UserDeleteBtn_OnClick"
+                        Content="Удалить"
+                        Foreground="Red"
+                        IsEnabled="{Binding IsEnabledUserDeleteBtn}"
+                        Name="UserDeleteBtn" />
+                    <Button
+                        Click="UserEditBtn_OnClick"
+                        Content="Изменить"
+                        IsEnabled="{Binding IsEnabledUserEditBtn}"
+                        Name="UserEditBtn" />
+                    <Button
+                        Click="AddUserBtn_OnClick"
+                        Content="Добавить пользователя"
+                        Name="AddUserBtn" />
+                </StackPanel>
+                <DataGrid
+                    AutoGenerateColumns="False"
+                    CanUserReorderColumns="False"
+                    CanUserResizeColumns="True"
+                    ColumnWidth="auto"
+                    IsReadOnly="True"
+                    ItemsSource="{Binding UsersList}"
+                    Loaded="Control_OnLoaded"
+                    Name="UsersDGrid"
+                    SelectedItem="{Binding SelectedUser}"
+                    SelectionChanged="UsersDataGrid_OnSelectionChanged">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding Login}" Header="Логин" />
+                        <DataGridTextColumn Binding="{Binding LastName}" Header="Фамилия" />
+                        <DataGridTextColumn Binding="{Binding FirstName}" Header="Имя" />
+                        <DataGridTextColumn Binding="{Binding Patronymic}" Header="Отчество" />
+                        <DataGridTextColumn Binding="{Binding Role.Name}" Header="Роль" />
+                        <DataGridTextColumn Binding="{Binding Status}" Header="Статус" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </StackPanel>
+        </TabItem>
+
+        <TabItem Header="Смены">
+            <StackPanel HorizontalAlignment="Stretch" Orientation="Vertical">
+                <StackPanel
+                    HorizontalAlignment="Right"
+                    Orientation="Horizontal"
+                    Spacing="10">
+                    <Button
+                        Click="RefreshShiftsBtn_OnClick"
+                        Content="Обновить"
+                        Name="RefreshShiftsBtn" />
+                    <Button
+                        Click="ShiftDeleteBtn_OnClick"
+                        Content="Удалить"
+                        Foreground="Red"
+                        HorizontalAlignment="Right"
+                        IsEnabled="{Binding IsEnabledShiftDeleteBtn}"
+                        Name="ShiftDeleteBtn" />
+                    <Button
+                        Click="ShiftEditBtn_OnClick"
+                        Content="Изменить"
+                        HorizontalAlignment="Right"
+                        IsEnabled="{Binding IsEnabledShiftEditBtn}"
+                        Name="ShiftEditBtn" />
+                    <Button
+                        Click="AddShiftBtn_OnClick"
+                        Content="Добавить смену"
+                        HorizontalAlignment="Right"
+                        Name="AddShiftBtn" />
+                </StackPanel>
+                <DataGrid
+                    AutoGenerateColumns="False"
+                    CanUserReorderColumns="False"
+                    CanUserResizeColumns="True"
+                    ColumnWidth="auto"
+                    ItemsSource="{Binding ShiftsList}"
+                    Name="ShiftsDGrid"
+                    SelectionChanged="ShiftsDataGrid_OnSelectionChanged">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding OpenAt.Date, StringFormat=dd.MM.yyyy}" Header="Дата" />
+                        <DataGridTextColumn Binding="{Binding OpenAt, StringFormat=HH:mm}" Header="Начало" />
+                        <DataGridTextColumn Binding="{Binding CloseAt, StringFormat=HH:mm}" Header="Конец" />
+                        <DataGridTextColumn Binding="{Binding Users.Count}" Header="Сотрудники" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </StackPanel>
+        </TabItem>
+
+        <TabItem Header="Столики">
+            <StackPanel Orientation="Vertical">
+                <StackPanel
+                    HorizontalAlignment="Right"
+                    Orientation="Horizontal"
+                    Spacing="10">
+                    <Button
+                        Click="RefreshTablesBtn_OnClick"
+                        Content="Обновить"
+                        Name="RefreshTablesBtn" />
+                    <Button
+                        Click="DeleteTableBtn_OnClick"
+                        Content="Удалить"
+                        Foreground="Red"
+                        IsEnabled="{Binding IsEnabledDeleteTableBtn}"
+                        Name="DeleteTableBtn" />
+                    <Button
+                        Click="AddTableBtn_OnClick"
+                        Content="Добавить столик"
+                        Name="AddTableBtn" />
+                </StackPanel>
+                <DataGrid
+                    AutoGenerateColumns="False"
+                    CanUserReorderColumns="False"
+                    CanUserResizeColumns="True"
+                    ColumnWidth="auto"
+                    ItemsSource="{Binding TablesList}"
+                    Name="TablesDGrid"
+                    SelectionChanged="TablesDataGrid_OnSelectionChanged">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding Id}" Header="ID" />
+                        <DataGridTextColumn Binding="{Binding Number}" Header="Номер столика" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </StackPanel>
+        </TabItem>
+
+        <TabItem Header="Заказы">
+            <StackPanel Orientation="Vertical">
+                <StackPanel
+                    HorizontalAlignment="Right"
+                    Orientation="Horizontal"
+                    Spacing="10">
+                    <Button
+                        Click="RefreshOrdersBtn_OnClick"
+                        Content="Обновить"
+                        Name="RefreshOrdersBtn" />
+                    <Button
+                        Click="EditOrderBtn_OnClick"
+                        Content="Изменить"
+                        IsEnabled="{Binding IsEnabledEditOrderBtn}"
+                        Name="EditOrderBtn" />
+                </StackPanel>
+                <DataGrid
+                    AutoGenerateColumns="False"
+                    CanUserReorderColumns="False"
+                    CanUserResizeColumns="True"
+                    ColumnWidth="auto"
+                    IsReadOnly="True"
+                    ItemsSource="{Binding OrdersList}"
+                    Name="OrdersDGrid"
+                    SelectionChanged="OrdersDataGrid_OnSelectionChanged">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding Table.Number}" Header="Столик" />
+                        <DataGridTextColumn Binding="{Binding ClientsNumber}" Header="Кол-во клиентов" />
+                        <DataGridTextColumn Binding="{Binding Status}" Header="Статус" />
+                        <DataGridTextColumn Binding="{Binding Shift.OpenAt, StringFormat=dd.MM.yyyy}" Header="Смена" />
+                        <DataGridTextColumn Binding="{Binding OpenAt, StringFormat=HH:mm}" Header="Сделан в" />
+                        <DataGridTextColumn Binding="{Binding CloseAt, StringFormat=HH:mm, TargetNullValue='Не выполнен'}" Header="Выполнен в" />
+                        <DataGridTextColumn Binding="{Binding Dishes}" Header="Содержимое заказа" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </StackPanel>
+        </TabItem>
+
+        <TabItem Header="Отчеты">
+            <StackPanel
+                HorizontalAlignment="Left"
+                Margin="20"
+                Orientation="Vertical"
+                Spacing="10"
+                VerticalAlignment="Top">
+                <Button
+                    Click="AllOrdersReportXlsxBtn_OnClick"
+                    Content="Сформировать отчет о всех заказах за смену (.xlsx)"
+                    Name="AllOrdersReportXlsxBtn" />
+                <Button
+                    Click="AllOrdersReportPdfBtn_OnClick"
+                    Content="Сформировать отчет о всех заказах за смену (.pdf)"
+                    Name="AllOrdersReportPdfBtn" />
+                <Button
+                    Click="PaidOrdersReportXlsxBtn_OnClick"
+                    Content="Сформировать отчет о оплаченных заказах за смену (.xlsx)"
+                    Name="PaidOrdersReportXlsxBtn" />
+                <Button
+                    Click="PaidOrdersReportPdfBtn_OnClick"
+                    Content="Сформировать отчет о оплаченных заказах за смену (.pdf)"
+                    Name="PaidOrdersReportPdfBtn" />
+
+                <TextBlock
+                    Foreground="Red"
+                    HorizontalAlignment="Center"
+                    IsVisible="{Binding IsVisibleError}"
+                    Name="ReportErrorTextBlock"
+                    Text="{Binding Error}" />
+
+            </StackPanel>
+        </TabItem>
+
+        <TabItem Header="Профиль">
+            <StackPanel
+                Margin="10"
+                Orientation="Horizontal"
+                Spacing="10"
+                VerticalAlignment="Top">
+                <TextBlock
+                    HorizontalAlignment="Left"
+                    Text="Роль: Администратор"
+                    VerticalAlignment="Center" />
+                <Button
+                    Click="LogOutBtn_OnClick"
+                    Content="Выйти"
+                    Foreground="Red"
+                    HorizontalAlignment="Left"
+                    Name="LogOutBtn"
+                    VerticalAlignment="Center" />
+            </StackPanel>
+        </TabItem>
+
+    </TabControl>
+
+</Window>

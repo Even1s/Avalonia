@@ -11,7 +11,7 @@ public class User
 
     public string Login { get; set; } = null!;
 
-    public string Password { get; set; } = null!;
+    public string PasswordCrypt { get; set; } = null!;
 
     public string FirstName { get; set; } = null!;
 
